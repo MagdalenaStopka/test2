@@ -8,6 +8,8 @@ namespace BankAccountNS
 {
     public class BankAccount
     {
+        public const string DebitAmountExceeddsBalanceMessage = " Debit amount exeeds balance";
+        public const string DebitLessAmountThanZeroMessage = "Debit mount is less than 0";
         private string m_customerName;
         private double m_balance;
         private bool m_frozen = false;
@@ -44,12 +46,12 @@ namespace BankAccountNS
 
             if (amount > m_balance)
             {
-                throw new ArgumentOutOfRangeException("amount");
+                throw new ArgumentOutOfRangeException("amount", amount, DebitAmountExceeddsBalanceMessage);
             }
 
             if (amount < 0)
             {
-                throw new ArgumentOutOfRangeException("amount");
+                throw new ArgumentOutOfRangeException("amount", amount, DebitLessAmountThanZeroMessage);
             }
             m_balance -= amount;
         }
